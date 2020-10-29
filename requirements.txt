@@ -26,3 +26,5 @@ pytagcloud==0.3.5
 pygame==1.9.6
 simplejson==3.17.2
 flask-http-response==0.0.1.0
+nltk==3.5
+wordcloud==1.8.0
