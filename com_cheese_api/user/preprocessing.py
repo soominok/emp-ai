@@ -12,19 +12,22 @@ class CheeseData:
     def __init__(self):
         self.okt = Okt()
 
+    @staticmethod
     def read_file(self):
-        self.okt.pos("cheese User", stem=True)
         cheese_data = pd.read_csv("com_cheese_api/user/data/users.csv")
         cheese_df = cheese_data.loc[:,['cheese_name']]
         texts = np.array(cheese_df['cheese_name'].tolist())
         return texts
+        print('-' * 10)
+        print(texts)
 
-    @staticmethod
-    def extract_hangeul(texts):
-        temp = texts.replace('\n', ' ')
-        tokenizer = re.compile(r'[^ㄱ-힣]+')
-        temp = tokenizer.sub('', temp)
-        return temp
+    def extract_hangeul(self):
+        #temp = texts.replace('\n', ' ')
+        sentences_tag = []
+        for sentence in texts:
+            morph = self.okt.pos(sentence)
+            sentences_tag.append(morph)
+        return sentences_tag
 
     @staticmethod
     def change_token(texts):
@@ -83,4 +86,3 @@ class CheeseData:
 
 if __name__ == '__main__':
     CheeseData()
-   
